@@ -1,0 +1,46 @@
+{
+  "results" : [ {
+    "columns" : [ "bike", "p1", "p2" ],
+    "data" : [ {
+      "graph" : {
+        "nodes" : [ {
+          "id" : "17",
+          "labels" : [ "Wheel" ],
+          "properties" : {
+            "spokes" : 3
+          }
+        }, {
+          "id" : "16",
+          "labels" : [ "Bike" ],
+          "properties" : {
+            "weight" : 10
+          }
+        }, {
+          "id" : "18",
+          "labels" : [ "Wheel" ],
+          "properties" : {
+            "spokes" : 32
+          }
+        } ],
+        "relationships" : [ {
+          "id" : "9",
+          "type" : "HAS",
+          "startNode" : "16",
+          "endNode" : "17",
+          "properties" : {
+            "position" : 1
+          }
+        }, {
+          "id" : "10",
+          "type" : "HAS",
+          "startNode" : "16",
+          "endNode" : "18",
+          "properties" : {
+            "position" : 2
+          }
+        } ]
+      }
+    } ]
+  } ],
+  "errors" : [ ]
+}
