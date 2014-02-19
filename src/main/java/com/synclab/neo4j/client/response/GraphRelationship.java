@@ -5,15 +5,15 @@
 package com.synclab.neo4j.client.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.synclab.neo4j.client.DetachedRelationship;
 import java.util.HashMap;
 import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.PropertyContainer;
 
 /**
  *
  * @author tyreus
  */
-public class GraphRelationship implements PropertyContainer {
+public class GraphRelationship implements DetachedRelationship {
 
     @JsonProperty
     private final HashMap<String, Object> properties;
@@ -38,20 +38,20 @@ public class GraphRelationship implements PropertyContainer {
         this.endNode = endNode;
     }
 
-    public String getId() {
-        return id;
+    public long getId() {
+        return Long.parseLong(id);
     }
 
     public String getType() {
         return type;
     }
 
-    public String getStartNode() {
-        return startNode;
+    public long getStartNodeId() {
+        return Long.parseLong(startNode);
     }
 
-    public String getEndNode() {
-        return endNode;
+    public long getEndNodeId() {
+        return Long.parseLong(endNode);
     }
 
     public GraphDatabaseService getGraphDatabase() {
@@ -72,11 +72,11 @@ public class GraphRelationship implements PropertyContainer {
     }
 
     public void setProperty(String string, Object o) {
-        throw new UnsupportedOperationException("These GraphNodes are ready only. Use a Cypher statement to update property values");
+        throw new UnsupportedOperationException("These GraphRelationships are ready only. Use a Cypher statement to update property values");
     }
 
     public Object removeProperty(String string) {
-        throw new UnsupportedOperationException("These GraphNodes are ready only. Use a Cypher statement to update property values");
+        throw new UnsupportedOperationException("These GraphRelationships are ready only. Use a Cypher statement to update property values");
     }
 
     public Iterable<String> getPropertyKeys() {

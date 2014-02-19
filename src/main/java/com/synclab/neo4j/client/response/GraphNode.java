@@ -5,17 +5,20 @@
 package com.synclab.neo4j.client.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.synclab.neo4j.client.DetachedNode;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.neo4j.graphdb.DynamicLabel;
 import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.PropertyContainer;
+import org.neo4j.graphdb.Label;
 
 /**
  * A read-only PropertyContainer for deserializing "graph" format responses.
  *
  * @author tyreus
  */
-public class GraphNode implements PropertyContainer {
+public class GraphNode implements DetachedNode {
 
     @JsonProperty
     private final HashMap<String, Object> properties;
@@ -59,11 +62,20 @@ public class GraphNode implements PropertyContainer {
         return properties.keySet();
     }
 
-    public String getId() {
-        return id;
+    public long getId() {
+        return Long.parseLong(id);
     }
 
-    public List<String> getLabels() {
-        return labels;
+    public Iterable<Label> getLabels() {
+        
+        List<Label> labelList= new ArrayList();
+        
+        for (String l : labels) {
+            labelList.add(DynamicLabel.label(l));
+        }
+        
+        return labelList;
     }
+
+    
 }
