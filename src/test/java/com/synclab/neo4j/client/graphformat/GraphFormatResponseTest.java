@@ -26,11 +26,10 @@ public class GraphFormatResponseTest {
         try {
             GraphFormatResponse response = mapper.readValue(is, GraphFormatResponse.class);
 
-            assertEquals(3, response.getNodes().size());
-            assertEquals(2, response.getRelationships().size());
+            assertEquals(3, response.getNodes().get(0).size());
+            assertEquals(2, response.getRelationships().get(0).size());
 
-            Object spokes = response.getNodes().get(0).getProperty("spokes");
-
+            Object spokes = response.getNodes().get(0).iterator().next().getProperty("spokes");
             assertEquals(3, ((Integer) spokes).intValue());
 
         } catch (IOException e) {

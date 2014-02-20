@@ -28,10 +28,10 @@ public class TransactionalApiClient {
     public TransactionalApiClient(String host, int port) {
         client = Client.create();
         resourceUrl = "http://" + host + ":" + port + TRANSACTIONAL_ENDPOINT;
-        baseUri =  "http://" + host + ":" + port + "/db";
+        baseUri =  "http://" + host + ":" + port + "/db/data";
     }
 
-    public GraphFormatResponse executeSingleQuery(String cypher, Map<String, Object> params) {
+    public DetachedEntityResponse executeSingleQuery(String cypher, Map<String, Object> params) {
         final List<Statement> statements = new ArrayList();
         statements.add(new Statement(cypher, params));
         TransactionalRequest request = new TransactionalRequest(statements);
@@ -45,7 +45,7 @@ public class TransactionalApiClient {
         return r;
     }
     
-    public GraphFormatResponse executeBatchedQueries(List<Statement> statements) {
+    public BatchDetachedEntityResponse executeBatchedQueries(List<Statement> statements) {
         TransactionalRequest request = new TransactionalRequest(statements);
 
         WebResource webResource = client.resource(resourceUrl+"/commit");

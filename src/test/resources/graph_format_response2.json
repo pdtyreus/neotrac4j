@@ -1,0 +1,162 @@
+{
+    "results": [
+        {
+            "columns": [
+                "u",
+                "r",
+                "d"
+            ],
+            "data": [
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "210",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "firstName": "Daniel",
+                                    "lastName": "Tyreus",
+                                    "gender": "MALE",
+                                    "uuid": "cce916d8-1f1a-4c08-a808-7713233a4228"
+                                }
+                            },
+                            {
+                                "id": "211",
+                                "labels": [
+                                    "Device"
+                                ],
+                                "properties": {
+                                    "uuid": "0cb5e41c-3732-4d79-9fe8-7c40dcfa2804",
+                                    "macHash": "1",
+                                    "operatingSystem": "IOS",
+                                    "pushToken": "2"
+                                }
+                            }
+                        ],
+                        "relationships": [
+                            {
+                                "id": "144",
+                                "type": "HAS_DEVICE",
+                                "startNode": "210",
+                                "endNode": "211",
+                                "properties": {}
+                            }
+                        ]
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "212",
+                                "labels": [
+                                    "Device"
+                                ],
+                                "properties": {
+                                    "uuid": "3816ee12-47e3-46bb-a9a9-7c87e9b8b62b",
+                                    "macHash": "2",
+                                    "operatingSystem": "IOS",
+                                    "pushToken": "3"
+                                }
+                            },
+                            {
+                                "id": "210",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "firstName": "Daniel",
+                                    "lastName": "Tyreus",
+                                    "gender": "MALE",
+                                    "uuid": "cce916d8-1f1a-4c08-a808-7713233a4228"
+                                }
+                            }
+                        ],
+                        "relationships": [
+                            {
+                                "id": "145",
+                                "type": "HAS_DEVICE",
+                                "startNode": "210",
+                                "endNode": "212",
+                                "properties": {}
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "columns": [
+                "u",
+                "d"
+            ],
+            "data": [
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "210",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "firstName": "Daniel",
+                                    "lastName": "Tyreus",
+                                    "gender": "MALE",
+                                    "uuid": "cce916d8-1f1a-4c08-a808-7713233a4228"
+                                }
+                            },
+                            {
+                                "id": "211",
+                                "labels": [
+                                    "Device"
+                                ],
+                                "properties": {
+                                    "uuid": "0cb5e41c-3732-4d79-9fe8-7c40dcfa2804",
+                                    "macHash": "1",
+                                    "operatingSystem": "IOS",
+                                    "pushToken": "2"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "212",
+                                "labels": [
+                                    "Device"
+                                ],
+                                "properties": {
+                                    "uuid": "3816ee12-47e3-46bb-a9a9-7c87e9b8b62b",
+                                    "macHash": "2",
+                                    "operatingSystem": "IOS",
+                                    "pushToken": "3"
+                                }
+                            },
+                            {
+                                "id": "210",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "firstName": "Daniel",
+                                    "lastName": "Tyreus",
+                                    "gender": "MALE",
+                                    "uuid": "cce916d8-1f1a-4c08-a808-7713233a4228"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                }
+            ]
+        }
+    ],
+    "errors": []
+}

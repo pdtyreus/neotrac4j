@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <neo4j.version>2.0.1</neo4j.version>
         <jersey.version>1.18</jersey.version>
-        <jackson.version>2.3.1</jackson.version>
+        <jackson.version>2.1.1</jackson.version>
     </properties>
   
     <licenses>
