@@ -7,12 +7,15 @@ package com.synclab.neo4j.client;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.filter.LoggingFilter;
 import com.synclab.neo4j.client.request.Statement;
 import com.synclab.neo4j.client.request.TransactionalRequest;
 import com.synclab.neo4j.client.response.GraphFormatResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -24,9 +27,11 @@ public class TransactionalApiClient {
     private final Client client;
     private final String resourceUrl;
     private final String baseUri;
+    private static final Logger logger = LoggerFactory.getLogger(TransactionalApiClient.class);
 
     public TransactionalApiClient(String host, int port) {
         client = Client.create();
+        //client.addFilter(new LoggingFilter(System.out));
         resourceUrl = "http://" + host + ":" + port + TRANSACTIONAL_ENDPOINT;
         baseUri =  "http://" + host + ":" + port + "/db/data";
     }
