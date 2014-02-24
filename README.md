@@ -32,7 +32,8 @@ something like that, see the [Java REST Binding](https://github.com/neo4j/java-r
 
 Specifically, every node and relationship returned from the API is completely *detached* from the database.
 You must construct your Cypher queries to return all the data you plan to read. Also, you
-cannot update detached nodes. For easier compatibility, data returned from the API
+cannot update detached nodes directly. You must create a Cypher statement to update properties
+or relationships on a detached node. For easier compatibility, data returned from the API
 implements the Neo4j core PropertyContainer API, but you will get a runtime exception
 if you try to write data to the PropertyContainer object.
 
@@ -55,7 +56,7 @@ TransactionalApiClient client = new TransactionalApiClient("localhost",7474);
 String queryString = "MATCH (u:User {uuid: {uuid}})-[:HAS_DEVICE]->(d:Device) RETURN d";
 Map parameters = new HashMap<>();
 parameters.put("uuid", "12345");
-List<Set<DetachedNode>> nodes = getClient().executeSingleQuery(queryString, parameters).getNodes();
+List<Set<DetachedNode>> nodes = client.executeSingleQuery(queryString, parameters).getNodes();
 //flatten results
 Set<DetachedNode> results = new HashSet();
 for (Set<DetachedNode> row : nodes) {
@@ -80,7 +81,7 @@ statements.add(new Statement("MERGE (n:EmailAddress {email: {email}}) RETURN n",
 statements.add(new Statement("MATCH (u:User {uuid: {uuid}}), (e:EmailAddress {email: {email}}) MERGE (u)-[:HAS_EMAIL_ADDRESS]->(e)", parameters));
 
 //execute the batch in one transaction
-BatchDetachedEntityResponse response = getClient().executeBatchedQueries(statements);
+BatchDetachedEntityResponse response = client.executeBatchedQueries(statements);
 
 //check for errors
 if (!response.getErrors().isEmpty()) {
