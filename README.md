@@ -11,38 +11,83 @@ Neo4j team introduced a descriptive query language called Cypher and a REST API.
 API allows for several modes of operation, but the one of particular interest to me
 is the endpoint that accepts Cypher queries directly.
 
-Version 2.0 of Neo4j introduced the concept of labels and moved Cypher into position
-as preferred way of communicating with Neo4j.
+# What is NeoTRAC4J?
 
-The Java API still seems to be the most high-performance way to read and write from
-Neo4j for embedded databases, but once you move to a client/server model, this becomes 
-less practical. 
+NeoTRAC4J is a clean-room implementation of a java client for the Neo4J REST API. It is designed
+specifically for neo4j 2.0+ and Cypher.
 
-My biggest complaint with Neo4j right now is that there does not seem to be many 
-well-documented best practices for interacting with the database in client/server mode.
-In fact there are far too many different ways to do things, many of which lead
-rapidly into performance rabbit holes.
+## Features
 
-I evaluated the following tools for interacting with the database, in order of most high level to most low level:
+ * Designed specifically for the client/server use case (i.e. Neo4j runs on a separate instance from your application).
+ * Uses the [transactional API endpoint](http://docs.neo4j.org/chunked/milestone/rest-api-transactional.html).
+ * Submit multiple Cypher statements and they will be automatically batched and handled in a single transaction.
+ * Parses the response using the new [graph response format](http://docs.neo4j.org/chunked/milestone/rest-api-transactional.html).
+ * Jackson and Jersey client for JSON handling.
 
- * [Spring Data Neo4j](http://projects.spring.io/spring-data-neo4j/) - As of the time of
-this writing, SDN4J does not support Neo4j 2.0.
- * [Java REST Bindings](https://github.com/neo4j/java-rest-binding) - This project
-tries to wrap the REST API in order to make it look like the original Java API for 
-embedded use. Unfortunately I found performance to be quite poor over even a local
-network and transaction semantics were quite unclear.
- * [RestAPIFacade](https://github.com/neo4j/java-rest-binding) - This seems to be 
-what's under the hood of the Java REST Bindings and allows for access to batch transactions. However,
-I found myself writing a lot of boilerplate to deserialize the responses.
- * [REST API](http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html) - The 
-standard REST API supports a transactional endpoint and the ability to submit Cypher
-queries directly. However, the response format is quite verbose and not intuitive to parse.
+## What is NeoTRAC4J not?
 
-### Project Goals
+NeoTRAC4J is not a drop in replacement for [GraphDatabaseService](http://docs.neo4j.org/chunked/milestone/tutorials-java-embedded-setup.html). It
+does not behave like the native Java API for updating nodes and following traversals. For 
+something like that, see the [Java REST Binding](https://github.com/neo4j/java-rest-binding) project.
 
-What I've set out to build is a simple client for submitting Cypher queries to the
-transactional REST API endpoint and parsing the response back into POJOs.
+Specifically, every node and relationship returned from the API is completely *detached* from the database.
+You must construct your Cypher queries to return all the data you plan to read. Also, you
+cannot update detached nodes. For easier compatibility, data returned from the API
+implements the Neo4j core PropertyContainer API, but you will get a runtime exception
+if you try to write data to the PropertyContainer object.
 
-I rely on Jackson for JSON parsing and use the new 
-[graph response format](http://docs.neo4j.org/chunked/milestone/rest-api-transactional.html)
-of the transactional REST API.
+# Usage
+
+Retrieve a single detached node:
+
+```java
+TransactionalApiClient client = new TransactionalApiClient("localhost",7474);
+String queryString = "MATCH (u:User)-[:HAS_DEVICE]->(d:Device {uuid: {uuid}}) RETURN u";
+Map parameters = new HashMap<>();
+parameters.put("uuid", "12345");
+DetachedNode node = client.executeSingleQuery(queryString, parameters).singleNode();
+```
+
+Retrieve multiple detached nodes:
+
+```java
+TransactionalApiClient client = new TransactionalApiClient("localhost",7474);
+String queryString = "MATCH (u:User {uuid: {uuid}})-[:HAS_DEVICE]->(d:Device) RETURN d";
+Map parameters = new HashMap<>();
+parameters.put("uuid", "12345");
+List<Set<DetachedNode>> nodes = getClient().executeSingleQuery(queryString, parameters).getNodes();
+//flatten results
+Set<DetachedNode> results = new HashSet();
+for (Set<DetachedNode> row : nodes) {
+  for (DetachedNode node : row) {
+    results.add(node);
+  }
+}
+```
+
+Create and read in a batch transaction:
+
+```java
+List<Statement> statements = new ArrayList();
+String uuid = UUID.randomUUID().toString();
+Map<String, Object> map = new HashMap();
+map.put("uuid", uuid);
+statements.add(new Statement("MERGE (u:User {uuid: {uuid}}) RETURN u", map));
+Map<String, Object> parameters = new HashMap<>();
+parameters.put("email", "someone@somewhere.com");
+parameters.put("uuid", uuid);
+statements.add(new Statement("MERGE (n:EmailAddress {email: {email}}) RETURN n", parameters));
+statements.add(new Statement("MATCH (u:User {uuid: {uuid}}), (e:EmailAddress {email: {email}}) MERGE (u)-[:HAS_EMAIL_ADDRESS]->(e)", parameters));
+
+//execute the batch in one transaction
+BatchDetachedEntityResponse response = getClient().executeBatchedQueries(statements);
+
+//check for errors
+if (!response.getErrors().isEmpty()) {
+  throw new RuntimeException(response.getErrors().get(0).getMessage());
+}
+
+//get the first node returned from the first statement in the batch
+//this is still a tad ugly
+DetachedNode node = response.getNodes().get(0).iterator().next();
+```
