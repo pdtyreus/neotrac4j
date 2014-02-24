@@ -15,6 +15,7 @@
         <neo4j.version>2.0.1</neo4j.version>
         <jersey.version>1.18</jersey.version>
         <jackson.version>2.1.1</jackson.version>
+        <netbeans.hint.license>gpl30</netbeans.hint.license>
     </properties>
   
     <licenses>
