@@ -64,4 +64,26 @@ public class GraphFormatResponseTest {
             fail("unable to parse graph format: " + e.getMessage());
         }
     }
+    
+    @Test
+    public void testDeserializeBatch() {
+        ObjectMapper mapper = new ObjectMapper();
+
+        InputStream is = GraphFormatResponseTest.class.getResourceAsStream("/graph_format_response2.json");
+
+        try {
+            GraphFormatResponse response = mapper.readValue(is, GraphFormatResponse.class);
+            
+            assertEquals(2, response.getResultsSize());
+
+            assertEquals(2, response.getNodes(0).get(0).size());
+            assertEquals(1, response.getRelationships(0).get(0).size());
+
+            assertEquals(2, response.getNodes(1).get(0).size());
+            assertEquals(0, response.getRelationships(1).get(0).size());
+
+        } catch (IOException e) {
+            fail("unable to parse graph format: " + e.getMessage());
+        }
+    }
 }

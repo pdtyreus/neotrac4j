@@ -38,4 +38,12 @@ public interface BatchDetachedEntityResponse {
     DetachedRelationship singleRelationship(int statementIndex);
     
     List<ApiError> getErrors();
+    
+    /**
+     * Returns the number of entries in the results array. This should correspond
+     * to the number of statements in the batch query.
+     * 
+     * @return int
+     */
+    int getResultsSize();
 }

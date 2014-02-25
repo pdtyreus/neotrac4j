@@ -153,22 +153,27 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
         return nodeSet.iterator().next();
     }
 
+    @Override
     public List<Set<DetachedNode>> getNodes() {
         return getNodes(0);
     }
 
+    @Override
     public List<Set<DetachedRelationship>> getRelationships() {
         return getRelationships(0);
     }
 
+    @Override
     public DetachedNode singleNode() {
         return singleNode(0);
     }
 
+    @Override
     public DetachedRelationship singleRelationship() {
         return singleRelationship(0);
     }
 
+    @Override
     public List<ApiError> getErrors() {
         if (errors.isEmpty()) {
             return new ArrayList();
@@ -187,4 +192,11 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
             return new ArrayList();
         }
     }
+
+    @Override
+    public int getResultsSize() {
+        return results.size();
+    }
+    
+    
 }
