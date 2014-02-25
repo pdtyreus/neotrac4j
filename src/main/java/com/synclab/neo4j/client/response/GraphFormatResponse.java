@@ -28,7 +28,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * A POJO representation of JSON response using the graph format 
+ * from the neo4j transactional REST endpoint.
+ * 
  * @author pdtyreus
  */
 public class GraphFormatResponse implements DetachedEntityResponse, BatchDetachedEntityResponse {

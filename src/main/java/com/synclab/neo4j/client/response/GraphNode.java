@@ -22,11 +22,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.neo4j.graphdb.DynamicLabel;
-import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Label;
 
 /**
- * A read-only implementation {@link org.neo4j.graphdb.PropertyContainer} for deserializing "graph" format responses.
+ * A POJO representation of an element from the <code>nodes</code> JSON array
+ * in the graph format response from the neo4j transactional REST endpoint.
  *
  * @author pdtyreus
  */
@@ -45,39 +45,33 @@ public class GraphNode implements DetachedNode {
         this.labels = labels;
     }
 
-    public GraphDatabaseService getGraphDatabase() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+    @Override
     public boolean hasProperty(String string) {
         return properties.containsKey(string);
     }
 
+    @Override
     public Object getProperty(String string) {
         return properties.get(string);
     }
 
+    @Override
     public Object getProperty(String string, Object o) {
         Object ret = properties.get(string);
         return (ret == null ? o : ret);
     }
 
-    public void setProperty(String string, Object o) {
-        throw new UnsupportedOperationException("These GraphNodes are ready only. Use a Cypher statement to update property values");
-    }
-
-    public Object removeProperty(String string) {
-        throw new UnsupportedOperationException("These GraphNodes are ready only. Use a Cypher statement to update property values");
-    }
-
+    @Override
     public Iterable<String> getPropertyKeys() {
         return properties.keySet();
     }
 
+    @Override
     public long getId() {
         return Long.parseLong(id);
     }
 
+    @Override
     public Iterable<Label> getLabels() {
         
         List<Label> labelList= new ArrayList();

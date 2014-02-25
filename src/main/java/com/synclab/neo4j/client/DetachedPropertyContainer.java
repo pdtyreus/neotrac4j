@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 pdtyreus
+ * Copyright (C) 2014 P. Daniel Tyreus
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,18 +17,12 @@
 package com.synclab.neo4j.client;
 
 /**
- * A implementation of {@link DetachedPropertyContainer} similar to {@link org.neo4j.graphdb.Relationship} except 
- * that this version is completely detached from the database. All properties are
- * set after the initial query response and nothing is lazily loaded. Writing to
- * a DetachedRelationship will not update the database.
- * 
- * @author pdtyreus
+ *
+ * @author P. Daniel Tyreus
  */
-public interface DetachedRelationship extends DetachedPropertyContainer {
-
-    public long getEndNodeId();
-
-    public long getId();
-
-    public long getStartNodeId();
+public interface DetachedPropertyContainer {
+    public boolean hasProperty(String string);
+    public Object getProperty(String string);
+    public Object getProperty(String string, Object o);
+    public Iterable<String> getPropertyKeys();
 }

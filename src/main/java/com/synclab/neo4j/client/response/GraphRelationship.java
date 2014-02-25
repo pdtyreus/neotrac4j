@@ -19,10 +19,10 @@ package com.synclab.neo4j.client.response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.synclab.neo4j.client.DetachedRelationship;
 import java.util.HashMap;
-import org.neo4j.graphdb.GraphDatabaseService;
 
 /**
- * A read-only implementation {@link org.neo4j.graphdb.PropertyContainer} for deserializing "graph" format responses.
+ * A POJO representation of an element from the <code>relationships</code> JSON array
+ * in the graph format response from the neo4j transactional REST endpoint.
  * 
  * @author pdtyreus
  */
@@ -51,6 +51,7 @@ public class GraphRelationship implements DetachedRelationship {
         this.endNode = endNode;
     }
 
+    @Override
     public long getId() {
         return Long.parseLong(id);
     }
@@ -59,39 +60,33 @@ public class GraphRelationship implements DetachedRelationship {
         return type;
     }
 
+    @Override
     public long getStartNodeId() {
         return Long.parseLong(startNode);
     }
 
+    @Override
     public long getEndNodeId() {
         return Long.parseLong(endNode);
     }
 
-    public GraphDatabaseService getGraphDatabase() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+    @Override
     public boolean hasProperty(String string) {
         return properties.containsKey(string);
     }
 
+    @Override
     public Object getProperty(String string) {
         return properties.get(string);
     }
 
+    @Override
     public Object getProperty(String string, Object o) {
         Object ret = properties.get(string);
         return (ret == null ? o : ret);
     }
 
-    public void setProperty(String string, Object o) {
-        throw new UnsupportedOperationException("These GraphRelationships are ready only. Use a Cypher statement to update property values");
-    }
-
-    public Object removeProperty(String string) {
-        throw new UnsupportedOperationException("These GraphRelationships are ready only. Use a Cypher statement to update property values");
-    }
-
+    @Override
     public Iterable<String> getPropertyKeys() {
         return properties.keySet();
     }
