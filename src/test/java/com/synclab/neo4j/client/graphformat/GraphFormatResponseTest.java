@@ -19,11 +19,8 @@ package com.synclab.neo4j.client.graphformat;
 import com.synclab.neo4j.client.response.GraphFormatResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.synclab.neo4j.client.DetachedNode;
-import java.awt.Label;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashSet;
-import java.util.Set;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

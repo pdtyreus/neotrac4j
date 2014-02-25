@@ -18,11 +18,8 @@ package com.synclab.neo4j.client.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.synclab.neo4j.client.DetachedNode;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import org.neo4j.graphdb.DynamicLabel;
-import org.neo4j.graphdb.Label;
 
 /**
  * A POJO representation of an element from the <code>nodes</code> JSON array
@@ -72,15 +69,8 @@ public class GraphNode implements DetachedNode {
     }
 
     @Override
-    public Iterable<Label> getLabels() {
-        
-        List<Label> labelList= new ArrayList();
-        
-        for (String l : labels) {
-            labelList.add(DynamicLabel.label(l));
-        }
-        
-        return labelList;
+    public Iterable<String> getLabels() {
+        return labels;
     }
 
     
