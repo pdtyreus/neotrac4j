@@ -16,18 +16,15 @@
  */
 package com.synclab.neo4j.client;
 
-import org.neo4j.graphdb.Label;
-import org.neo4j.graphdb.PropertyContainer;
-
 /**
- * A implementation of {@link org.neo4j.graphdb.PropertyContainer} similar to {@link org.neo4j.graphdb.Node} except 
+ * A implementation of {@link DetachedPropertyContainer} similar to {@link org.neo4j.graphdb.Node} except 
  * that this version is completely detached from the database. All properties are
  * set after the initial query response and nothing is lazily loaded. Writing to
  * a DetachedNode will not update the database.
  * 
  * @author pdtyreus
  */
-public interface DetachedNode extends PropertyContainer {
+public interface DetachedNode extends DetachedPropertyContainer {
     public long getId();
-    public Iterable<Label> getLabels();
+    public Iterable<String> getLabels();
 }

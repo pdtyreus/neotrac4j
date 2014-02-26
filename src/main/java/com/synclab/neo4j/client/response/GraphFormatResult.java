@@ -20,7 +20,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- *
+ * A POJO representation of an element from <code>results</code> JSON array
+ * in the graph format response from the neo4j transactional REST endpoint.
+ * 
  * @author pdtyreus
  */
 public class GraphFormatResult {
