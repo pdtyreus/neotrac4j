@@ -17,7 +17,6 @@
 package com.synclab.neo4j.client;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * A representation of the response from a single Cypher statement. The response
@@ -33,9 +32,9 @@ import java.util.Set;
  */
 public interface DetachedEntityResponse {
 
-    List<Set<DetachedNode>> getNodes();
+    List<List<DetachedNode>> getNodes();
 
-    List<Set<DetachedRelationship>> getRelationships();
+    List<List<DetachedRelationship>> getRelationships();
 
     DetachedNode singleNode();
 

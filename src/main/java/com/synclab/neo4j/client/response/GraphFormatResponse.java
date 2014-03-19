@@ -46,7 +46,7 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
     }
 
     @Override
-    public List<Set<DetachedNode>> getNodes(int statementIndex) {
+    public List<List<DetachedNode>> getNodes(int statementIndex) {
 
         if (results.isEmpty()) {
             return new ArrayList();
@@ -58,12 +58,12 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
             return new ArrayList();
         }
 
-        List<Set<DetachedNode>> nodes = new ArrayList();
+        List<List<DetachedNode>> nodes = new ArrayList();
 
         for (GraphFormatData data : result.getData()) {
             //each "graph" is like a row
             GraphFormatGraph graph = data.getGraph();
-            Set<DetachedNode> rList = new HashSet();
+            List<DetachedNode> rList = new ArrayList();
             for (GraphNode node : graph.getNodes()) {
                 rList.add(node);
             }
@@ -75,7 +75,7 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
     }
 
     @Override
-    public List<Set<DetachedRelationship>> getRelationships(int statementIndex) {
+    public List<List<DetachedRelationship>> getRelationships(int statementIndex) {
 
         if (results.isEmpty()) {
             return new ArrayList();
@@ -87,12 +87,12 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
             return new ArrayList();
         }
 
-        List<Set<DetachedRelationship>> nodes = new ArrayList();
+        List<List<DetachedRelationship>> nodes = new ArrayList();
 
         for (GraphFormatData data : result.getData()) {
             //each "graph" is like a row
             GraphFormatGraph graph = data.getGraph();
-            Set<DetachedRelationship> rList = new HashSet();
+            List<DetachedRelationship> rList = new ArrayList();
             for (GraphRelationship node : graph.getRelationships()) {
                 rList.add(node);
             }
@@ -105,14 +105,14 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
     @Override
     public DetachedNode singleNode(int statementIndex) {
 
-        List<Set<DetachedNode>> nodes = getNodes(statementIndex);
+        List<List<DetachedNode>> nodes = getNodes(statementIndex);
 
         if (nodes.isEmpty()) {
             return null;
         }
 
-        Set<DetachedNode> nodeSet = new HashSet();
-        for (Set<DetachedNode> s : nodes) {
+        List<DetachedNode> nodeSet = new ArrayList();
+        for (List<DetachedNode> s : nodes) {
             for (DetachedNode n : s) {
                 nodeSet.add(n);
             }
@@ -131,14 +131,14 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
 
     @Override
     public DetachedRelationship singleRelationship(int statementIndex) {
-        List<Set<DetachedRelationship>> nodes = getRelationships(statementIndex);
+        List<List<DetachedRelationship>> nodes = getRelationships(statementIndex);
 
         if (nodes.isEmpty()) {
             return null;
         }
 
-        Set<DetachedRelationship> nodeSet = new HashSet();
-        for (Set<DetachedRelationship> s : nodes) {
+        List<DetachedRelationship> nodeSet = new ArrayList();
+        for (List<DetachedRelationship> s : nodes) {
             for (DetachedRelationship n : s) {
                 nodeSet.add(n);
             }
@@ -155,13 +155,11 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
         return nodeSet.iterator().next();
     }
 
-    @Override
-    public List<Set<DetachedNode>> getNodes() {
+    public List<List<DetachedNode>> getNodes() {
         return getNodes(0);
     }
 
-    @Override
-    public List<Set<DetachedRelationship>> getRelationships() {
+    public List<List<DetachedRelationship>> getRelationships() {
         return getRelationships(0);
     }
 

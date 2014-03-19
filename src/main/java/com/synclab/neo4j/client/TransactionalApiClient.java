@@ -60,6 +60,8 @@ public class TransactionalApiClient {
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class, request);
 
         GraphFormatResponse r = response.getEntity(GraphFormatResponse.class);
+        
+        response.close();
 
         return r;
     }
@@ -72,6 +74,8 @@ public class TransactionalApiClient {
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class, request);
 
         GraphFormatResponse r = response.getEntity(GraphFormatResponse.class);
+        
+        response.close();
 
         return r;
     }

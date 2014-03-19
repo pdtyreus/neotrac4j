@@ -17,7 +17,6 @@
 package com.synclab.neo4j.client;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * A representation of the response from multiple Cypher statement. This is functionally
@@ -29,9 +28,9 @@ import java.util.Set;
  * @author pdtyreus
  */
 public interface BatchDetachedEntityResponse {
-    List<Set<DetachedNode>> getNodes(int statementIndex);
+    List<List<DetachedNode>> getNodes(int statementIndex);
 
-    List<Set<DetachedRelationship>> getRelationships(int statementIndex);
+    List<List<DetachedRelationship>> getRelationships(int statementIndex);
 
     DetachedNode singleNode(int statementIndex);
 
