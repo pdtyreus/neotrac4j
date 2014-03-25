@@ -21,9 +21,14 @@ import java.util.List;
 /**
  * A representation of the response from a single Cypher statement. The response
  * consists of two collections, nodes and relationships, each represented as a List
- * of a Set of detached entities. The entries in the Set can be thought of as values for
- * each column in a given row in a in table and the entries in the list can be
+ * of a List of detached entities. The entries in the inner List can be thought of as values for
+ * each column in a given row in a in table and the entries in the outer list can be
  * thought of as the rows.
+ * <p>
+ * Please note that even though the DetachedNodes and DetachedRelationships are returned
+ * as lists, the order does not seem to be consistent. In other words, if your cypher
+ * query ends with "RETURN a,b,c", the actual order a,b,c is not guaranteed to be the 
+ * same from row to row.
  * <p>
  * There are convenience methods for getting a single DetachedNode or single
  * DetachedRelationship.

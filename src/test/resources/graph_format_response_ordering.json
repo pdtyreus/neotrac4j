@@ -1,0 +1,520 @@
+{
+    "results": [
+        {
+            "columns": [
+                "m",
+                "u",
+                "u2"
+            ],
+            "data": [
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "1869",
+                                "labels": [
+                                    "AssetStack"
+                                ],
+                                "properties": {
+                                    "uuid": "b44e5b6e-c6e0-4e55-83a7-dacd6e651275",
+                                    "dateAdded": 1395768189891,
+                                    "location": "200 Tamal Vista Blvd",
+                                    "state": "IGNORED",
+                                    "viewed": false
+                                }
+                            },
+                            {
+                                "id": "1587",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "0f7c7a61-f9b4-4a19-910f-e01468bf4799",
+                                    "dateOfBirth": 205398000000,
+                                    "lastName": "T",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Daniel"
+                                }
+                            },
+                            {
+                                "id": "1584",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "9928731d-0451-4583-a44b-467329589ef0",
+                                    "dateOfBirth": 201337200000,
+                                    "lastName": "H",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Zakk"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "1587",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "0f7c7a61-f9b4-4a19-910f-e01468bf4799",
+                                    "dateOfBirth": 205398000000,
+                                    "lastName": "T",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Daniel"
+                                }
+                            },
+                            {
+                                "id": "7430",
+                                "labels": [
+                                    "AssetStack"
+                                ],
+                                "properties": {
+                                    "uuid": "f793d8ca-a200-4a2b-8c21-5db18d67ce9f",
+                                    "dateAdded": 1395768794253,
+                                    "location": "200 Tamal Vista Blvd",
+                                    "state": "IGNORED",
+                                    "viewed": false
+                                }
+                            },
+                            {
+                                "id": "1584",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "9928731d-0451-4583-a44b-467329589ef0",
+                                    "dateOfBirth": 201337200000,
+                                    "lastName": "H",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Zakk"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "13769",
+                                "labels": [
+                                    "AssetStack"
+                                ],
+                                "properties": {
+                                    "uuid": "ce8860ba-2cbc-42f9-8761-bb7b19c75735",
+                                    "dateAdded": 1395769586510,
+                                    "location": "200 Tamal Vista Blvd",
+                                    "state": "IGNORED",
+                                    "viewed": false
+                                }
+                            },
+                            {
+                                "id": "12945",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "72d0b11a-1b51-405d-a07a-bd1fcaa95680",
+                                    "dateOfBirth": 202827600000,
+                                    "lastName": "S",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Iggy"
+                                }
+                            },
+                            {
+                                "id": "1584",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "9928731d-0451-4583-a44b-467329589ef0",
+                                    "dateOfBirth": 201337200000,
+                                    "lastName": "H",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Zakk"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "18055",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "702a56fd-f0a6-41d7-a13f-8b45a76ae3fe",
+                                    "dateOfBirth": 202892400000,
+                                    "lastName": "S",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Iggy"
+                                }
+                            },
+                            {
+                                "id": "13778",
+                                "labels": [
+                                    "AssetStack"
+                                ],
+                                "properties": {
+                                    "uuid": "c615a810-4456-4ddf-b56d-cc34973a959e",
+                                    "dateAdded": 1395769587477,
+                                    "location": "200 Tamal Vista Blvd",
+                                    "state": "IGNORED",
+                                    "viewed": false
+                                }
+                            },
+                            {
+                                "id": "12945",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "72d0b11a-1b51-405d-a07a-bd1fcaa95680",
+                                    "dateOfBirth": 202827600000,
+                                    "lastName": "S",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Iggy"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "13796",
+                                "labels": [
+                                    "AssetStack"
+                                ],
+                                "properties": {
+                                    "uuid": "7af54e20-818f-4e27-ba24-bd14b6b84d89",
+                                    "dateAdded": 1395769588973,
+                                    "location": "200 Tamal Vista Blvd",
+                                    "state": "IGNORED",
+                                    "viewed": false
+                                }
+                            },
+                            {
+                                "id": "1587",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "0f7c7a61-f9b4-4a19-910f-e01468bf4799",
+                                    "dateOfBirth": 205398000000,
+                                    "lastName": "T",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Daniel"
+                                }
+                            },
+                            {
+                                "id": "12945",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "72d0b11a-1b51-405d-a07a-bd1fcaa95680",
+                                    "dateOfBirth": 202827600000,
+                                    "lastName": "S",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Iggy"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "0",
+                                "labels": [
+                                    "AssetStack"
+                                ],
+                                "properties": {
+                                    "uuid": "acd63f79-2567-404c-aae9-2e2ab740c757",
+                                    "dateAdded": 1395700923740,
+                                    "location": "200 Tamal Vista Blvd",
+                                    "state": "IGNORED",
+                                    "viewed": false
+                                }
+                            },
+                            {
+                                "id": "17840",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "b0e7272a-2657-43f5-826c-a9bcca1096b2",
+                                    "dateOfBirth": 201337200000,
+                                    "lastName": "H",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Zakk"
+                                }
+                            },
+                            {
+                                "id": "18055",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "702a56fd-f0a6-41d7-a13f-8b45a76ae3fe",
+                                    "dateOfBirth": 202892400000,
+                                    "lastName": "S",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Iggy"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "1",
+                                "labels": [
+                                    "AssetStack"
+                                ],
+                                "properties": {
+                                    "uuid": "718027a0-9aeb-41fc-a9c3-43bc706e5a8f",
+                                    "dateAdded": 1395702100274,
+                                    "location": "200 Tamal Vista Blvd",
+                                    "state": "IGNORED",
+                                    "viewed": false
+                                }
+                            },
+                            {
+                                "id": "17840",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "b0e7272a-2657-43f5-826c-a9bcca1096b2",
+                                    "dateOfBirth": 201337200000,
+                                    "lastName": "H",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Zakk"
+                                }
+                            },
+                            {
+                                "id": "18055",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "702a56fd-f0a6-41d7-a13f-8b45a76ae3fe",
+                                    "dateOfBirth": 202892400000,
+                                    "lastName": "S",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Iggy"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "2",
+                                "labels": [
+                                    "AssetStack"
+                                ],
+                                "properties": {
+                                    "uuid": "65ccb16e-9130-42ac-94e7-f63d506ff1f7",
+                                    "dateAdded": 1395703068762,
+                                    "location": "200 Tamal Vista Blvd",
+                                    "state": "IGNORED",
+                                    "viewed": false
+                                }
+                            },
+                            {
+                                "id": "17840",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "b0e7272a-2657-43f5-826c-a9bcca1096b2",
+                                    "dateOfBirth": 201337200000,
+                                    "lastName": "H",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Zakk"
+                                }
+                            },
+                            {
+                                "id": "18055",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "702a56fd-f0a6-41d7-a13f-8b45a76ae3fe",
+                                    "dateOfBirth": 202892400000,
+                                    "lastName": "S",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Iggy"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "3",
+                                "labels": [
+                                    "AssetStack"
+                                ],
+                                "properties": {
+                                    "uuid": "c7e041a2-1b66-4255-9124-7646f5d3353b",
+                                    "dateAdded": 1395703297588,
+                                    "location": "200 Tamal Vista Blvd",
+                                    "state": "IGNORED",
+                                    "viewed": false
+                                }
+                            },
+                            {
+                                "id": "17840",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "b0e7272a-2657-43f5-826c-a9bcca1096b2",
+                                    "dateOfBirth": 201337200000,
+                                    "lastName": "H",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Zakk"
+                                }
+                            },
+                            {
+                                "id": "18055",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "702a56fd-f0a6-41d7-a13f-8b45a76ae3fe",
+                                    "dateOfBirth": 202892400000,
+                                    "lastName": "S",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Iggy"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "17840",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "b0e7272a-2657-43f5-826c-a9bcca1096b2",
+                                    "dateOfBirth": 201337200000,
+                                    "lastName": "H",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Zakk"
+                                }
+                            },
+                            {
+                                "id": "4",
+                                "labels": [
+                                    "AssetStack"
+                                ],
+                                "properties": {
+                                    "uuid": "e8662780-f142-4564-b100-84c71869725f",
+                                    "dateAdded": 1395703587523,
+                                    "location": "200 Tamal Vista Blvd",
+                                    "state": "IGNORED",
+                                    "viewed": false
+                                }
+                            },
+                            {
+                                "id": "18055",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "702a56fd-f0a6-41d7-a13f-8b45a76ae3fe",
+                                    "dateOfBirth": 202892400000,
+                                    "lastName": "S",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Iggy"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                },
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "17840",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "b0e7272a-2657-43f5-826c-a9bcca1096b2",
+                                    "dateOfBirth": 201337200000,
+                                    "lastName": "H",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Zakk"
+                                }
+                            },
+                            {
+                                "id": "5",
+                                "labels": [
+                                    "AssetStack"
+                                ],
+                                "properties": {
+                                    "uuid": "331e5331-b209-427a-a36a-685f9435a383",
+                                    "dateAdded": 1395703629133,
+                                    "location": "200 Tamal Vista Blvd",
+                                    "state": "IGNORED",
+                                    "viewed": false
+                                }
+                            },
+                            {
+                                "id": "18055",
+                                "labels": [
+                                    "User"
+                                ],
+                                "properties": {
+                                    "uuid": "702a56fd-f0a6-41d7-a13f-8b45a76ae3fe",
+                                    "dateOfBirth": 202892400000,
+                                    "lastName": "S",
+                                    "gender": "UNKNOWN",
+                                    "firstName": "Iggy"
+                                }
+                            }
+                        ],
+                        "relationships": []
+                    }
+                }
+            ]
+        }
+    ],
+    "errors": []
+}

@@ -33,9 +33,7 @@ something like that, see the [Java REST Binding](https://github.com/neo4j/java-r
 Specifically, every node and relationship returned from the API is completely *detached* from the database.
 You must construct your Cypher queries to return all the data you plan to read. Also, you
 cannot update detached nodes directly. You must create a Cypher statement to update properties
-or relationships on a detached node. For easier compatibility, data returned from the API
-implements the Neo4j core PropertyContainer API, but you will get a runtime exception
-if you try to write data to the PropertyContainer object.
+or relationships on a detached node.
 
 # Usage
 
@@ -56,10 +54,10 @@ TransactionalApiClient client = new TransactionalApiClient("localhost",7474);
 String queryString = "MATCH (u:User {uuid: {uuid}})-[:HAS_DEVICE]->(d:Device) RETURN d";
 Map parameters = new HashMap<>();
 parameters.put("uuid", "12345");
-List<Set<DetachedNode>> nodes = client.executeSingleQuery(queryString, parameters).getNodes();
+List<List<DetachedNode>> nodes = client.executeSingleQuery(queryString, parameters).getNodes();
 //flatten results
-Set<DetachedNode> results = new HashSet();
-for (Set<DetachedNode> row : nodes) {
+List<DetachedNode> results = new ArrayList();
+for (List<DetachedNode> row : nodes) {
   for (DetachedNode node : row) {
     results.add(node);
   }

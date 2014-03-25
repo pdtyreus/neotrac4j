@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.synclab.neo4j.client.DetachedNode;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -46,7 +47,7 @@ public class GraphFormatResponseTest {
             assertNotNull(firstNode);
             assertNotNull(firstNode.getLabels());
             assertNotNull(firstNode.getPropertyKeys());
-            
+
 
         } catch (IOException e) {
             fail("unable to parse graph format: " + e.getMessage());
@@ -68,7 +69,31 @@ public class GraphFormatResponseTest {
             fail("unable to parse graph format: " + e.getMessage());
         }
     }
-    
+
+    @Test
+    public void testDeserializationOrder() {
+        ObjectMapper mapper = new ObjectMapper();
+
+        InputStream is = GraphFormatResponseTest.class.getResourceAsStream("/graph_format_response_ordering.json");
+
+        try {
+            GraphFormatResponse response = mapper.readValue(is, GraphFormatResponse.class);
+
+            List<DetachedNode> nodeList = response.getNodes().get(0);
+            assertNotNull(nodeList.get(0).getProperty("location"));
+            assertNotNull(nodeList.get(1).getProperty("firstName"));
+            assertNotNull(nodeList.get(2).getProperty("firstName"));
+
+            nodeList = response.getNodes().get(1);
+            assertNotNull(nodeList.get(1).getProperty("location"));
+            assertNotNull(nodeList.get(0).getProperty("firstName"));
+            assertNotNull(nodeList.get(2).getProperty("firstName"));
+
+        } catch (IOException e) {
+            fail("unable to parse graph format: " + e.getMessage());
+        }
+    }
+
     @Test
     public void testDeserializeBatch() {
         ObjectMapper mapper = new ObjectMapper();
@@ -77,7 +102,7 @@ public class GraphFormatResponseTest {
 
         try {
             GraphFormatResponse response = mapper.readValue(is, GraphFormatResponse.class);
-            
+
             assertEquals(2, response.getResultsSize());
 
             assertEquals(2, response.getNodes(0).get(0).size());
