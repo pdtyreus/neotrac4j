@@ -19,6 +19,7 @@ package com.synclab.neo4j.client.response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.synclab.neo4j.client.DetachedRelationship;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * A POJO representation of an element from the <code>relationships</code> JSON array
@@ -89,5 +90,27 @@ public class GraphRelationship implements DetachedRelationship {
     @Override
     public Iterable<String> getPropertyKeys() {
         return properties.keySet();
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final GraphRelationship other = (GraphRelationship) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 }

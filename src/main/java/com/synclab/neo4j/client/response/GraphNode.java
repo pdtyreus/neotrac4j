@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.synclab.neo4j.client.DetachedNode;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A POJO representation of an element from the <code>nodes</code> JSON array
@@ -71,6 +72,28 @@ public class GraphNode implements DetachedNode {
     @Override
     public Iterable<String> getLabels() {
         return labels;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final GraphNode other = (GraphNode) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
     
