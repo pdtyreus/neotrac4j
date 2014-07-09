@@ -23,8 +23,10 @@ import com.synclab.neo4j.client.BatchDetachedEntityResponse;
 import com.synclab.neo4j.client.DetachedNode;
 import com.synclab.neo4j.client.DetachedRelationship;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -99,6 +101,65 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
             nodes.add(rList);
 
         }
+        return nodes;
+    }
+
+    @Override
+    public Set<DetachedNode> getStartNodesForRelationship(String relationshipType) {
+        
+        return getStartNodesForRelationship(relationshipType,0);
+        
+    }
+
+    @Override
+    public Set<DetachedNode> getEndNodesForRelationship(String relationshipType) {
+        return getEndNodesForRelationship(relationshipType,0);
+    }
+    
+    public Set<DetachedNode> getStartNodesForRelationship(String relationshipType, int statementIndex) {
+
+        
+        Map<Long,DetachedNode> nodeMap = new HashMap();
+        
+        for (List<DetachedNode> list : getNodes(statementIndex)) {
+            for (DetachedNode node : list) {
+                nodeMap.put(node.getId(), node);
+            }
+        }
+        
+        Set<DetachedNode> nodes = new HashSet();
+        
+        for (List<DetachedRelationship> list : getRelationships(statementIndex)) {
+            for (DetachedRelationship rel : list) {
+                if (relationshipType.equals(rel.getType())) {
+                    nodes.add(nodeMap.get(rel.getEndNodeId()));
+                }
+            }
+        }
+        
+        return nodes;
+    }
+
+    public Set<DetachedNode> getEndNodesForRelationship(String relationshipType, int statementIndex) {
+        
+        Map<Long,DetachedNode> nodeMap = new HashMap();
+        
+        for (List<DetachedNode> list : getNodes(statementIndex)) {
+            for (DetachedNode node : list) {
+                nodeMap.put(node.getId(), node);
+            }
+        }
+        
+        Set<DetachedNode> nodes = new HashSet();
+        
+        for (List<DetachedRelationship> list : getRelationships(statementIndex)) {
+            for (DetachedRelationship rel : list) {
+                if (relationshipType.equals(rel.getType())) {
+                    nodes.add(nodeMap.get(rel.getStartNodeId()));
+                }
+            }
+        }
+        
         return nodes;
     }
 

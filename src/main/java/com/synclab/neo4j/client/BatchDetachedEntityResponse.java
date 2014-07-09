@@ -17,17 +17,19 @@
 package com.synclab.neo4j.client;
 
 import java.util.List;
+import java.util.Set;
 
 /**
- * A representation of the response from multiple Cypher statement. This is functionally
- * similar to {@link DetachedEntityResponse} except that there each collection
- * of nodes is indexed by the statement in the order it was submitted. So think
- * of this as a wrapper around multiple tables, each table corresponding to the
- * results from one Cypher statement.
- * 
+ * A representation of the response from multiple Cypher statement. This is
+ * functionally similar to {@link DetachedEntityResponse} except that there each
+ * collection of nodes is indexed by the statement in the order it was
+ * submitted. So think of this as a wrapper around multiple tables, each table
+ * corresponding to the results from one Cypher statement.
+ *
  * @author pdtyreus
  */
 public interface BatchDetachedEntityResponse {
+
     List<List<DetachedNode>> getNodes(int statementIndex);
 
     List<List<DetachedRelationship>> getRelationships(int statementIndex);
@@ -35,13 +37,17 @@ public interface BatchDetachedEntityResponse {
     DetachedNode singleNode(int statementIndex);
 
     DetachedRelationship singleRelationship(int statementIndex);
-    
+
     List<ApiError> getErrors();
-    
+
+    Set<DetachedNode> getStartNodesForRelationship(String relationshipType, int statementIndex);
+
+    Set<DetachedNode> getEndNodesForRelationship(String relationshipType, int statementIndex);
+
     /**
-     * Returns the number of entries in the results array. This should correspond
-     * to the number of statements in the batch query.
-     * 
+     * Returns the number of entries in the results array. This should
+     * correspond to the number of statements in the batch query.
+     *
      * @return int
      */
     int getResultsSize();

@@ -31,4 +31,6 @@ public interface DetachedRelationship extends DetachedPropertyContainer {
     public long getId();
 
     public long getStartNodeId();
+    
+    public String getType();
 }
