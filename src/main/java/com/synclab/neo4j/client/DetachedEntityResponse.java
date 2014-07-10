@@ -51,4 +51,8 @@ public interface DetachedEntityResponse {
     Set<DetachedNode> getStartNodesForRelationship(String relationshipType);
     Set<DetachedNode> getEndNodesForRelationship(String relationshipType);
     
+    Set<DetachedNode> getStartNodesForRelationshipAndEndNode(String relationshipType, DetachedNode endNode);
+
+    Set<DetachedNode> getEndNodesForRelationshipAndStartNode(String relationshipType, DetachedNode startNode);
+    
 }

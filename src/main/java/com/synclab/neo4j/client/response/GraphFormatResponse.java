@@ -116,6 +116,7 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
         return getEndNodesForRelationship(relationshipType,0);
     }
     
+    @Override
     public Set<DetachedNode> getStartNodesForRelationship(String relationshipType, int statementIndex) {
 
         
@@ -140,6 +141,7 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
         return nodes;
     }
 
+    @Override
     public Set<DetachedNode> getEndNodesForRelationship(String relationshipType, int statementIndex) {
         
         Map<Long,DetachedNode> nodeMap = new HashMap();
@@ -162,6 +164,64 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
         
         return nodes;
     }
+
+    @Override
+    public Set<DetachedNode> getStartNodesForRelationshipAndEndNode(String relationshipType, DetachedNode endNode) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<DetachedNode> getEndNodesForRelationshipAndStartNode(String relationshipType, DetachedNode startNode) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<DetachedNode> getStartNodesForRelationshipAndEndNode(String relationshipType, DetachedNode endNode, int statementIndex) {
+        Map<Long,DetachedNode> nodeMap = new HashMap();
+        
+        for (List<DetachedNode> list : getNodes(statementIndex)) {
+            for (DetachedNode node : list) {
+                nodeMap.put(node.getId(), node);
+            }
+        }
+        
+        Set<DetachedNode> nodes = new HashSet();
+        
+        for (List<DetachedRelationship> list : getRelationships(statementIndex)) {
+            for (DetachedRelationship rel : list) {
+                if (relationshipType.equals(rel.getType()) && (rel.getEndNodeId() == endNode.getId())) {
+                    nodes.add(nodeMap.get(rel.getStartNodeId()));
+                }
+            }
+        }
+        
+        return nodes;
+    }
+
+    @Override
+    public Set<DetachedNode> getEndNodesForRelationshipAndStartNode(String relationshipType, DetachedNode startNode, int statementIndex) {
+        Map<Long,DetachedNode> nodeMap = new HashMap();
+        
+        for (List<DetachedNode> list : getNodes(statementIndex)) {
+            for (DetachedNode node : list) {
+                nodeMap.put(node.getId(), node);
+            }
+        }
+        
+        Set<DetachedNode> nodes = new HashSet();
+        
+        for (List<DetachedRelationship> list : getRelationships(statementIndex)) {
+            for (DetachedRelationship rel : list) {
+                if (relationshipType.equals(rel.getType()) && (rel.getStartNodeId() == startNode.getId())) {
+                    nodes.add(nodeMap.get(rel.getEndNodeId()));
+                }
+            }
+        }
+        
+        return nodes;
+    }
+    
+    
 
     @Override
     public DetachedNode singleNode(int statementIndex) {
