@@ -22,6 +22,7 @@ import com.synclab.neo4j.client.DetachedNode;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Set;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -88,6 +89,26 @@ public class GraphFormatResponseTest {
             assertNotNull(nodeList.get(1).getProperty("location"));
             assertNotNull(nodeList.get(0).getProperty("firstName"));
             assertNotNull(nodeList.get(2).getProperty("firstName"));
+
+        } catch (IOException e) {
+            fail("unable to parse graph format: " + e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testExtractStructure() {
+        ObjectMapper mapper = new ObjectMapper();
+
+        InputStream is = GraphFormatResponseTest.class.getResourceAsStream("/graph_format_response.json");
+
+        try {
+            GraphFormatResponse response = mapper.readValue(is, GraphFormatResponse.class);
+
+            Set<DetachedNode> wheels = response.getEndNodesForRelationship("HAS");
+            assertEquals(2,wheels.size());
+            
+            Set<DetachedNode> bikes = response.getStartNodesForRelationship("HAS");
+            assertEquals(1,bikes.size());
 
         } catch (IOException e) {
             fail("unable to parse graph format: " + e.getMessage());

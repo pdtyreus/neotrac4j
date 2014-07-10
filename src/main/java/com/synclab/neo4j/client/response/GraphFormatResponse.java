@@ -133,7 +133,7 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
         for (List<DetachedRelationship> list : getRelationships(statementIndex)) {
             for (DetachedRelationship rel : list) {
                 if (relationshipType.equals(rel.getType())) {
-                    nodes.add(nodeMap.get(rel.getEndNodeId()));
+                    nodes.add(nodeMap.get(rel.getStartNodeId()));
                 }
             }
         }
@@ -157,7 +157,7 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
         for (List<DetachedRelationship> list : getRelationships(statementIndex)) {
             for (DetachedRelationship rel : list) {
                 if (relationshipType.equals(rel.getType())) {
-                    nodes.add(nodeMap.get(rel.getStartNodeId()));
+                    nodes.add(nodeMap.get(rel.getEndNodeId()));
                 }
             }
         }
@@ -167,12 +167,12 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
 
     @Override
     public Set<DetachedNode> getStartNodesForRelationshipAndEndNode(String relationshipType, DetachedNode endNode) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getStartNodesForRelationshipAndEndNode(relationshipType, endNode, 0);
     }
 
     @Override
     public Set<DetachedNode> getEndNodesForRelationshipAndStartNode(String relationshipType, DetachedNode startNode) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getEndNodesForRelationshipAndStartNode(relationshipType, startNode, 0);
     }
 
     @Override
