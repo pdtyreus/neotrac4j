@@ -16,6 +16,8 @@
  */
 package com.synclab.neo4j.client;
 
+import java.util.Set;
+
 /**
  *
  * @author P. Daniel Tyreus
@@ -24,5 +26,5 @@ public interface DetachedPropertyContainer {
     public boolean hasProperty(String string);
     public Object getProperty(String string);
     public Object getProperty(String string, Object o);
-    public Iterable<String> getPropertyKeys();
+    public Set<String> getPropertyKeys();
 }

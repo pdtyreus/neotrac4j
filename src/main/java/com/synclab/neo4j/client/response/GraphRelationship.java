@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.synclab.neo4j.client.DetachedRelationship;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A POJO representation of an element from the <code>relationships</code> JSON array
@@ -88,7 +89,7 @@ public class GraphRelationship implements DetachedRelationship {
     }
 
     @Override
-    public Iterable<String> getPropertyKeys() {
+    public Set<String> getPropertyKeys() {
         return properties.keySet();
     }
     

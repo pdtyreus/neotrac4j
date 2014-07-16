@@ -18,9 +18,12 @@ package com.synclab.neo4j.client.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.synclab.neo4j.client.DetachedNode;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A POJO representation of an element from the <code>nodes</code> JSON array
@@ -60,7 +63,7 @@ public class GraphNode implements DetachedNode {
     }
 
     @Override
-    public Iterable<String> getPropertyKeys() {
+    public Set<String> getPropertyKeys() {
         return properties.keySet();
     }
 
@@ -70,8 +73,8 @@ public class GraphNode implements DetachedNode {
     }
 
     @Override
-    public Iterable<String> getLabels() {
-        return labels;
+    public Set<String> getLabels() {
+        return new HashSet(labels);
     }
 
     @Override

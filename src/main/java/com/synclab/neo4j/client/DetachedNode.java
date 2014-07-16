@@ -16,6 +16,8 @@
  */
 package com.synclab.neo4j.client;
 
+import java.util.Set;
+
 /**
  * A implementation of {@link DetachedPropertyContainer} similar to {@link org.neo4j.graphdb.Node} except 
  * that this version is completely detached from the database. All properties are
@@ -26,5 +28,5 @@ package com.synclab.neo4j.client;
  */
 public interface DetachedNode extends DetachedPropertyContainer {
     public long getId();
-    public Iterable<String> getLabels();
+    public Set<String> getLabels();
 }
