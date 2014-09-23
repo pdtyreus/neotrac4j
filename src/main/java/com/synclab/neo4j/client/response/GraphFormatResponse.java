@@ -41,6 +41,8 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
     private final List<GraphFormatResult> results;
     @JsonProperty
     private final List<GraphFormatError> errors;
+    
+    private Map<Integer,Map<Long,DetachedNode>> lazyNodeMap = new HashMap();
 
     public GraphFormatResponse(@JsonProperty("results") List<GraphFormatResult> results, @JsonProperty("errors") List<GraphFormatError> errors) {
         this.results = results;
@@ -163,6 +165,48 @@ public class GraphFormatResponse implements DetachedEntityResponse, BatchDetache
         }
         
         return nodes;
+    }
+
+    @Override
+    public DetachedNode getStartNodeForRelationship(DetachedRelationship relationship) {
+        return getStartNodeForRelationship(relationship, 0);
+    }
+
+    @Override
+    public DetachedNode getEndNodeForRelationship(DetachedRelationship relationship) {
+        return getEndNodeForRelationship(relationship, 0);
+    }
+
+    @Override
+    public DetachedNode getStartNodeForRelationship(DetachedRelationship relationship, int statementIndex) {
+        Map<Long,DetachedNode> nodeMap = lazyNodeMap.get(statementIndex);
+        if (nodeMap == null) {
+            nodeMap = new HashMap();
+            for (List<DetachedNode> list : getNodes(statementIndex)) {
+                for (DetachedNode node : list) {
+                    nodeMap.put(node.getId(), node);
+                }
+            }
+            lazyNodeMap.put(statementIndex, nodeMap);
+        }
+        
+        return nodeMap.get(relationship.getStartNodeId());
+    }
+
+    @Override
+    public DetachedNode getEndNodeForRelationship(DetachedRelationship relationship, int statementIndex) {
+        Map<Long,DetachedNode> nodeMap = lazyNodeMap.get(statementIndex);
+        if (nodeMap == null) {
+            nodeMap = new HashMap();
+            for (List<DetachedNode> list : getNodes(statementIndex)) {
+                for (DetachedNode node : list) {
+                    nodeMap.put(node.getId(), node);
+                }
+            }
+            lazyNodeMap.put(statementIndex, nodeMap);
+        }
+        
+        return nodeMap.get(relationship.getEndNodeId());
     }
 
     @Override

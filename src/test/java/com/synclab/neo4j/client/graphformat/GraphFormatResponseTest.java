@@ -19,6 +19,7 @@ package com.synclab.neo4j.client.graphformat;
 import com.synclab.neo4j.client.response.GraphFormatResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.synclab.neo4j.client.DetachedNode;
+import com.synclab.neo4j.client.DetachedRelationship;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -109,6 +110,18 @@ public class GraphFormatResponseTest {
             
             Set<DetachedNode> bikes = response.getStartNodesForRelationship("HAS");
             assertEquals(1,bikes.size());
+            
+            for (List<DetachedRelationship> rels : response.getRelationships()) {
+                for (DetachedRelationship rel : rels) {
+                    if (rel.getId() == 9l) {
+                        DetachedNode start = response.getStartNodeForRelationship(rel);
+                        DetachedNode end = response.getEndNodeForRelationship(rel);
+                        
+                        assertEquals(16l,start.getId());
+                        assertEquals(17l,end.getId());
+                    }
+                }
+            }
 
         } catch (IOException e) {
             fail("unable to parse graph format: " + e.getMessage());

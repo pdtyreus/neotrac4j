@@ -47,6 +47,10 @@ public interface BatchDetachedEntityResponse {
     Set<DetachedNode> getStartNodesForRelationshipAndEndNode(String relationshipType, DetachedNode endNode, int statementIndex);
 
     Set<DetachedNode> getEndNodesForRelationshipAndStartNode(String relationshipType, DetachedNode startNode, int statementIndex);
+    
+    DetachedNode getStartNodeForRelationship(DetachedRelationship relationship, int statementIndex);
+    DetachedNode getEndNodeForRelationship(DetachedRelationship relationship, int statementIndex);
+    
 
     /**
      * Returns the number of entries in the results array. This should

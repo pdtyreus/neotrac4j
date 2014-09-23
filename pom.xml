@@ -4,7 +4,7 @@
 
     <groupId>com.synclab.neo4j.client</groupId>
     <artifactId>neotrac4j</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>2.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Transactional REST API Client for Neo4j</name>
