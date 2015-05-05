@@ -25,6 +25,7 @@ import com.synclab.neo4j.client.response.GraphFormatResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,6 +60,11 @@ public class TransactionalApiClient {
 
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class, request);
 
+        if ( response.getStatusInfo().getFamily() != Response.Status.Family.SUCCESSFUL ) {
+            logger.error(response.getStatusInfo().getReasonPhrase());
+            throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
+        }
+        
         GraphFormatResponse r = response.getEntity(GraphFormatResponse.class);
         
         response.close();
@@ -73,6 +79,11 @@ public class TransactionalApiClient {
 
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class, request);
 
+        if ( response.getStatusInfo().getFamily() != Response.Status.Family.SUCCESSFUL ) {
+            logger.error(response.getStatusInfo().getReasonPhrase());
+            throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
+        }
+        
         GraphFormatResponse r = response.getEntity(GraphFormatResponse.class);
         
         response.close();
