@@ -1,6 +1,14 @@
 neotrac4j
 =========
 
+*Update Jan 2017*
+
+There are now much better options for connecting to Neo4j from Java. I would recommend using one of the following options for any project:
+
+ * [Neo4j Java Driver](https://github.com/neo4j/neo4j-java-driver)
+ * [Neo4j OGM](https://github.com/neo4j/neo4j-ogm)
+ * [Spring Data Neo4j](https://projects.spring.io/spring-data-neo4j/)
+
 Java Transactional REST API Client for Neo4j
 --------------------------------------------
 
